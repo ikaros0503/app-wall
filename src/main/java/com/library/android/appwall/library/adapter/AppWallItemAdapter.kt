@@ -37,6 +37,7 @@ class AppWallItemAdapter :
                 .centerCrop()
                 .into(holder.itemView.image_icon)
 
+            holder.itemView.rating_bar.isEnabled = false
             holder.itemView.image_new.visibility = if (item.isNew) View.VISIBLE else View.GONE
             holder.itemView.text_title.text = item.getTitle()
             holder.itemView.text_description.text = item.getDescription()
