@@ -5,6 +5,7 @@ import com.library.android.appwall.library.AppWall
 import com.library.android.appwall.library.dependencies.ApiDependencies
 import com.library.android.appwall.library.dependencies.LocalAppRepository
 import com.library.android.appwall.library.model.App
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class AppWallViewModel(apiDependencies: ApiDependencies, localAppRepository: LocalAppRepository) :
@@ -31,6 +32,11 @@ class AppWallViewModel(apiDependencies: ApiDependencies, localAppRepository: Loc
     }
 
     fun isReadyForUse() = (listApps.value?.size ?: 0) > 0
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
+    }
 
     class Factory(
         private val apiDependencies: ApiDependencies,
