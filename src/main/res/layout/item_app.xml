@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    app:contentPaddingBottom="12dp"
+    app:contentPaddingLeft="8dp"
+    app:contentPaddingRight="8dp"
+    app:contentPaddingTop="12dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_icon"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:padding="4dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@android:color/black"/>
+
+        <ImageView
+            android:id="@+id/image_new"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_new_red_24dp"
+            app:layout_constraintStart_toStartOf="@id/image_icon"
+            app:layout_constraintTop_toTopOf="@id/image_icon"/>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/text_ad"
+            app:layout_constraintStart_toEndOf="@id/image_icon"
+            app:layout_constraintTop_toTopOf="@id/image_icon"
+            tools:text="@string/fab_transformation_scrim_behavior"/>
+
+        <TextView
+            android:id="@+id/text_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#f1c40f"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="2dp"
+            android:text="Ad"
+            android:textColor="@android:color/white"
+            android:textSize="8dp"
+            app:layout_constraintEnd_toEndOf="@id/text_title"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_title"/>
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="24dp"
+            android:minHeight="24dp"
+            android:rating="2.5"
+            android:isIndicator="false"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            app:mrb_progressBackgroundTint="@color/cardview_dark_background"
+            app:mrb_progressTint="#f1c40f"
+            app:mrb_secondaryProgressTint="@color/cardview_dark_background"/>
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toStartOf="@id/button_install"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar"
+            tools:text="@string/fab_transformation_scrim_behavior"/>
+
+        <Button
+            android:id="@+id/button_install"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_install"
+            android:textColor="@android:color/white"
+            app:backgroundTint="#e74c3c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/text_description"
+            app:layout_constraintTop_toTopOf="@id/text_description"/>
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
