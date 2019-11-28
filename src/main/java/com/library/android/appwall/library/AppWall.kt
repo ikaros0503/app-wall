@@ -10,6 +10,7 @@ import android.net.Uri
 import com.library.android.appwall.library.dependencies.ApiDependencies
 import com.library.android.appwall.library.dependencies.LocalAppRepository
 import com.library.android.appwall.library.viewmodel.AppWallViewModel
+import java.io.File
 
 object AppWall {
     private var setLock = Any()
@@ -18,6 +19,7 @@ object AppWall {
     private var viewModelStore = ViewModelStore()
     private lateinit var viewModel: AppWallViewModel
 
+    @JvmStatic
     fun initialize(url: String, context: Context) {
         synchronized(setLock) {
             if (this.url.isEmpty()) {
@@ -41,24 +43,29 @@ object AppWall {
         }
     }
 
+    @JvmStatic
     fun getNumberOfNewItem(): Int {
         return viewModel.getListApps().value?.count { it.isNew } ?: 0
     }
 
+    @JvmStatic
     fun observerWhenReadyForUse(owner: LifecycleOwner, action: (Boolean) -> Unit) {
         viewModel.getListApps().observe(owner, Observer {
             action.invoke((it ?: listOf()).isNotEmpty())
         })
     }
 
+    @JvmStatic
     fun isReadyForUse() = synchronized(setLock) {
         viewModel.isReadyForUse()
     }
 
+    @JvmStatic
     fun getUrl() = synchronized(setLock) {
         url
     }
 
+    @JvmStatic
     fun getPackageId() = synchronized(setLock) {
         packageId
     }

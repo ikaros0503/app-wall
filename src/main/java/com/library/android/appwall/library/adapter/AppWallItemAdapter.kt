@@ -32,8 +32,6 @@ class AppWallItemAdapter :
         getItem(position)?.also { item ->
             Glide.with(holder.itemView)
                 .load(item.icon)
-                .transform(RoundedCorners(12))
-                .centerCrop()
                 .into(holder.itemView.image_icon)
 
             holder.itemView.rating_bar.isEnabled = false
