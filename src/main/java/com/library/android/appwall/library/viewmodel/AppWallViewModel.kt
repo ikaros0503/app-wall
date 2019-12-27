@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
 import com.github.kittinunf.fuel.core.Handler
 import com.library.android.appwall.library.AppWall
 import com.library.android.appwall.library.coroutines.viewModelScope
@@ -22,12 +23,17 @@ class AppWallViewModel(apiDependencies: ApiDependencies, localAppRepository: Loc
     init {
         apiDependencies.fetchData { _, _, result ->
             result.fold({ results ->
+                for (_result in results) {
+                    Log.w("Api", "Result=${_result.packageId}")
+                }
                 viewModelScope.launch {
                     listApps.value =
-                        results.filter {
-                            it.packageId != AppWall.getPackageId()
-                                    && !localAppRepository.isAppInstall(it.packageId)
-                        }.sortedByDescending { it.isNew }
+                        results
+                            .filter { it.packageId != null }
+                            .filter {
+                                it.packageId != AppWall.getPackageId()
+                                        && !localAppRepository.isAppInstall(it.packageId)
+                            }.sortedByDescending { it.isNew }
                 }
             }) {
                 it.printStackTrace()
