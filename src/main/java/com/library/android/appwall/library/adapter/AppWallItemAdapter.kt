@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.library.android.appwall.library.R
 import com.library.android.appwall.library.goStore
 import com.library.android.appwall.library.model.App
-import kotlinx.android.synthetic.main.item_app.view.*
+import kotlinx.android.synthetic.main.item_app_wall.view.*
 
 class AppWallItemAdapter :
     ListAdapter<App, AppWallItemAdapter.ItemViewHolder>(DiffItemCallback()) {
@@ -19,7 +19,7 @@ class AppWallItemAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_app,
+                R.layout.item_app_wall,
                 parent,
                 false
             )
